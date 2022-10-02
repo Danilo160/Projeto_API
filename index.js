@@ -1,31 +1,32 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv').config();
-const mongoose = require('mongoose');
 const cors = require('cors');
-const alunoRouter = require('./router/alunoRouter');
+const mongoose = require('mongoose');
+const alunoRoute = require('./api/routes/alunoRoute');
 
-// mongoose.connect(process.env.URL_DB)
+//Conectando ao mongoDB
 
-//Conexão com DB
 try{
-    // mongoose.connect(process.env.URL_DB);
-    mongoose.connect("mongodb+srv://mongodb:mongodb@cluster0.sphd7pi.mongodb.net/?retryWrites=true&w=majority");
+
+    /*Crie o .env e adicione: 
+    DB_STR_CON = 'mongodb+srv://mongodb:mongodb@cluster0.sphd7pi.mongodb.net/?retryWrites=true&w=majority'
+    Ou descomente a seguinte linha*/
+
+    //mongoose.connect(process.env.DB_STR_CON);
+
+    mongoose.connect('mongodb+srv://mongodb:mongodb@cluster0.sphd7pi.mongodb.net/?retryWrites=true&w=majority');
+    
 } catch (error) {
     console.log("Erro durante a conexão com MongoDB");
 }
 
-
 app.use(express.json());
 app.use(cors());
 
-app.use(alunoRouter);
+//Rota de aluno
+app.use(alunoRoute);
 
-// app.get('/Aluno', (req, res) => {
-//     res.json([
-//         {nome: "Amélia"},
-//         {idade: 13}
-//     ])
-// })
-
-app.listen(3000)
+app.listen(3000, () => {
+    console.log('Api funcionando!')
+});
