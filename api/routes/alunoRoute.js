@@ -1,7 +1,9 @@
 const alunoRoute = require('express').Router();
 const aluno = require('../models/alunoModel');
 
-//GET ALL
+/*O email não fui utilizado como identificador, pois pode ser necessário atualizá-lo*/
+
+//GET ALL - Lista todos os alunos cadastrados
 alunoRoute.get('/aluno', async (req, res) => {
     try {
         const result = await aluno.find({});
@@ -11,17 +13,18 @@ alunoRoute.get('/aluno', async (req, res) => {
     }
 });
 
-//GET ID 
+//GET ID - Lista apenas um aluno específico pelo _id
 alunoRoute.get('/aluno/:id', async (req, res) => {
     try {
-        const result = await aluno.findOne({email: req.params.email});
+        const result = await aluno.findOne({"_id": req.params.id});
         res.json(result);
+
     } catch (error) {
         res.json({mensagem: 'Erro na busca!'});
     }
 });
 
-//POST
+//POST - Cadastra um novo aluno
 alunoRoute.post('/aluno', async (req, res) => {
     try {
         await aluno.create(req.body);
@@ -31,20 +34,20 @@ alunoRoute.post('/aluno', async (req, res) => {
     }
 });
 
-//PUT
-alunoRoute.put('/aluno', async (req, res) => {
+//PUT - Atualiza um aluno específico pelo _id
+alunoRoute.put('/aluno/:id', async (req, res) => {
     try {
-        await aluno.updateOne({email: req.body.email}, req.body);
+        await aluno.findOneAndUpdate({"_id": req.params.id}, req.body, {new:true});
         res.json({mensagem: 'Aluno atualizado com sucesso!'});
     } catch (error) {
         res.json({mensagem: 'Erro na atualiazação!'});
     }
 });
 
-//DELETE
-alunoRoute.delete('/aluno', async (req, res) => {
+//DELETE - Remove um aluno específico pelo _id
+alunoRoute.delete('/aluno/:id', async (req, res) => {
     try {
-        await aluno.deleteOne({email: req.body.email});
+        await aluno.deleteOne({"_id": req.params.id});
         res.json({mensagem: 'Aluno removido com sucesso!'}); 
     } catch (error) {
         res.json({mensagem: 'Erro na exclusão!'});
