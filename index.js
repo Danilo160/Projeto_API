@@ -5,17 +5,19 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const alunoRoute = require('./api/routes/alunoRoute');
 
+const page = ('<center> \
+               <h1>Bem vindo(a) à API REST de alunos!</h1>\
+               <h2>\
+               <a href="" \
+               target="_blank">\
+               Consultar Documentação\
+               <a></h2>\
+               </center')
+              
 //Conectando ao mongoDB
 
 try{
-
-    /*Crie o .env e adicione: 
-    DB_STR_CON = 'mongodb+srv://mongodb:mongodb@cluster0.sphd7pi.mongodb.net/?retryWrites=true&w=majority'
-    Ou descomente a seguinte linha*/
-
-    //mongoose.connect(process.env.DB_STR_CON);
-
-    mongoose.connect('mongodb+srv://mongodb:mongodb@cluster0.sphd7pi.mongodb.net/?retryWrites=true&w=majority');
+    mongoose.connect(process.env.DB_STR_CON);
     
 } catch (error) {
     console.log("Erro durante a conexão com MongoDB");
@@ -27,6 +29,10 @@ app.use(cors());
 //Rota de aluno
 app.use(alunoRoute);
 
-app.listen(3000, () => {
+app.get('/', (req, res) => {
+    res.send(page);
+});
+
+app.listen(process.env.PORT || 3000, () => {
     console.log('Api funcionando!')
 });
