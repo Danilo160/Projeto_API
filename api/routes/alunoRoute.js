@@ -35,7 +35,7 @@ alunoRoute.get('/aluno/id=:id', async (req, res) => {
 alunoRoute.post('/add-aluno', async (req, res) => {
     try {
         if(Object.values(req.body).length===0){
-            res.json({mensagem: 'Erro! Objeto vazio!'}); 
+            res.json({mensagem: 'Erro!'}); 
         }else{
         await aluno.create(req.body);
         res.json({mensagem: 'Aluno cadastrado com sucesso!'});
@@ -49,7 +49,7 @@ alunoRoute.post('/add-aluno', async (req, res) => {
 alunoRoute.put('/update-aluno/email=:email', async (req, res) => {
     try {
         if(Object.values(req.body).length===0){
-            res.json({mensagem: 'Erro! Objeto vazio!'}); 
+            res.json({mensagem: 'Erro!'}); 
         }else{
         await aluno.findOneAndUpdate({"email": req.params.email}, req.body, {new:true});
         res.json({mensagem: 'Aluno atualizado com sucesso!'});
@@ -63,7 +63,7 @@ alunoRoute.put('/update-aluno/email=:email', async (req, res) => {
 alunoRoute.put('/update-aluno/id=:id', async (req, res) => {
     try {
         if(Object.values(req.body).length===0){
-            res.json({mensagem: 'Erro! Objeto vazio!'}); 
+            res.json({mensagem: 'Erro!'}); 
         }else{
         await aluno.findOneAndUpdate({"_id": req.params.id}, req.body, {new:true});
         res.json({mensagem: 'Aluno atualizado com sucesso!'});
