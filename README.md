@@ -4,7 +4,7 @@ Projeto de desenvolvimento de API REST como requisito da disciplina de Projeto d
 
 ## Como funciona
 
-A API tem o objetivo fornecer rotas para operaçãoes de CRUD de dados de alunos, para isso, foi desenvolvida em JavaScript usa o MongoDB para armazenar os dados.
+A API tem o objetivo de fornecer rotas para operações de CRUD de dados de alunos. Para isso, foi desenvolvida em JavaScript (node.js) utilizando o MongoDB para armazenar os dados.
 
 ## Como usar
 
