@@ -14,7 +14,7 @@ A API tem o objetivo de fornecer rotas para operações de CRUD de dados de alun
 
     - /all-alunos: para consultar todos os alunos cadastrados no banco
     - /aluno/email=email: para consultar um aluno pelo email
-    - /aluno/id-id: para consultar um aluno pelo id
+    - /aluno/id=id: para consultar um aluno pelo id
     - /add-aluno: para inserir um aluno no banco
     - /update-aluno/email=email: para atualizar um aluno pelo email
     - /update-aluno/id=id: para atualizar um aluno pelo id
