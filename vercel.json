@@ -17,5 +17,11 @@
           "src": "/(.*)",
           "dest": "index.js"
         }
-      ]
+      ],
+    {
+  "rewrites": [
+    { "source": "/favicon.ico", "destination": "/path/para/o/favicon.ico" }
+  ]
+}
+
 }
